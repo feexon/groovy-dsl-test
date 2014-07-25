@@ -1,7 +1,7 @@
 #Simple Groovy DSL Definition Example
 ----------
 
-```java
+```groovy
 send mail{
     from 'Lx@gmail.com'
     to 'github@gmail.com'
