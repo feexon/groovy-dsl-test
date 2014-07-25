@@ -5,7 +5,7 @@ import com.lx2j.mailing.domain.Mail
 /**
  * Created by L.x on 14-7-25.
  */
-class MailDSLBuilder {
+class MailDSLBuilder implements GroovyInterceptable {
     private Mail mail = new Mail()
 
     static Mail mail(Closure closure = Closure.IDENTITY) {
@@ -14,15 +14,10 @@ class MailDSLBuilder {
         return builder.mail;
     }
 
-    def from(String from) { mail.from = from; }
 
-    def to(String to) { mail.to = to; }
-
-    def subject(String subject) { mail.subject = subject; }
-
-    def content(String content) { mail.content = content; }
-
-    Mail getMail() {
-        return mail;
+    @Override
+    Object invokeMethod(String name, def args) {
+        mail[name] = args.first();
     }
+
 }
